@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>2 Usage 0.1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/1.%20Introduction.html"><strong>1</strong><span>Introduction</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/2.%20Usage.html"><strong>2</strong><span>Usage</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/3.%20Roadmap.html"><strong>3</strong><span>Roadmap</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/4.%20Contributons%20and%20issue%20tracking.html"><strong>4</strong><span>Contributons and issue tracking</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>Allows to run Grails JUnit tests concurrently.</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../guide/1.%20Introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/3.%20Roadmap.html"><strong>3</strong><span>Roadmap</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>2 Usage - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Marcin Erdmann</p>
+
+                    <p><strong>Version:</strong> 0.1</p>
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2.1.%20Installation"><strong>2.1</strong><span>Installation</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2.2%20Running%20the%20tests"><strong>2.2</strong><span>Running the tests</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#2.2.1%20:concurrent%20test%20type"><strong>2.2.1</strong><span>:concurrent test type</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#2.2.2%20:concurrent-explicit%20test%20type"><strong>2.2.2</strong><span>:concurrent-explicit test type</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#2.3.%20Configuration"><strong>2.3</strong><span>Configuration</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h1 id="2. Usage">2 Usage</h1>
+
+
+
+<h2 id="2.1. Installation">2.1 Installation</h2>
+To install the plugin use the <code>install-plugin</code> grails command:
+<div class="code"><pre>grails install&#45;plugin concurrent&#45;test</pre></div><p class="paragraph"/>You can also use the plugins block in <code>BuildConfig.groovy</code>:
+<div class="code"><pre>plugins &#123;
+    build(':concurrent&#45;test')
+&#125;</pre></div><p class="paragraph"/><blockquote class="warning">
+The <code>:concurrent</code> and <code>:concurrent-explicit</code> test types provided by the plugin pick up the same tests as the default <code>:unit</code> test type. Remember to always specify test type for the unit test phase after installing the plugin. Calling <code>grails test-app</code> or <code>grails test-app unit:</code> will cause your unit tests to be run three times: once for <code>:concurrent</code>, once for <code>:concurrent-explicit</code> and once for <code>:unit</code> test type - this is usually not what you want.
+</blockquote>
+
+
+<h2 id="2.2 Running the tests">2.2 Running the tests</h2>
+The plugin provides two new test types in unit test phase: <code>concurrent</code> and <code>concurrent-explicit</code>
+
+
+<h2 id="2.2.1 :concurrent test type">2.2.1 :concurrent test type</h2>
+<h4>Running</h4>
+<div class="code"><pre>grails test&#45;app unit:concurrent</pre></div><p class="paragraph"/><h4>Test execution process</h4>
+All test classes are run concurrently apart from the ones marked with <a href="../gapi/grails/plugin/concurrenttest/RunSequentially.html" class="api">RunSequentially</a> annotation which are run sequentially at the end of the test execution.
+
+
+
+<h2 id="2.2.2 :concurrent-explicit test type">2.2.2 :concurrent-explicit test type</h2>
+<h4>Running</h4>
+<div class="code"><pre>grails test&#45;app unit:concurrent&#45;explicit</pre></div><p class="paragraph"/><h4>Test execution process</h4>
+All the test classes that are marked with <a href="../gapi/grails/plugin/concurrenttest/RunConcurrently.html" class="api">RunConcurrently</a> annotation are run concurrently while all the other test classes are run sequentially at the end of the test execution.
+
+
+
+<h2 id="2.3. Configuration">2.3 Configuration</h2>
+Currently there is only on configuration entry used by the plugin.<p class="paragraph"/><h2>grails.plugin.concurrentTest.threadCount</h2><p class="paragraph"/><h4>Description</h4>
+Allows to specify how many threads should be used for the concurrent test execution.<p class="paragraph"/><h4>Default value</h4>
+<code>Runtime.runtime.availableProcessors() * 1.5</code>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../guide/1.%20Introduction.html">&lt;&lt; <strong>1</strong><span>Introduction</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/3.%20Roadmap.html"><strong>3</strong><span>Roadmap</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Test Types</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Test%20Types/:concurrent-explicit.html">:concurrent-explicit</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Test%20Types/:concurrent.html">:concurrent</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    
+    
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
