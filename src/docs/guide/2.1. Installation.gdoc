@@ -1,0 +1,15 @@
+To install the plugin use the @install-plugin@ grails command:
+{code}
+grails install-plugin concurrent-test
+{code}
+
+You can also use the plugins block in @BuildConfig.groovy@:
+{code}
+plugins {
+    build(':concurrent-test:0.1')
+}
+{code}
+
+{warning}
+The @:concurrent@ and @:concurrent-explicit@ test types provided by the plugin pick up the same tests as the default @:unit@ test type. Remember to always specify test type for the unit test phase after installing the plugin. Calling @grails test-app@ or @grails test-app unit:@ will cause your unit tests to be run three times: once for @:concurrent@, once for @:concurrent-explicit@ and once for @:unit@ test type - this is usually not what you want.
+{warning}

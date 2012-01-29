@@ -1,0 +1,4 @@
+Possible future new features (if somebody asks for it or I will need it myself):
+* add the new types also to @integration:@ test phase - not sure if the tests run in that phase are thread safe
+* run not only the test classes but also the tests within the test classes concurrently
+* support for running other test types concurrently, i.e. Spock

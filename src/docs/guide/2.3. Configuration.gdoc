@@ -1,0 +1,9 @@
+Currently there is only on configuration entry used by the plugin.
+
+h2. grails.plugin.concurrentTest.threadCount
+
+h4. Description
+Allows to specify how many threads should be used for the concurrent test execution.
+
+h4. Default value
+@Runtime.runtime.availableProcessors() * 1.5@

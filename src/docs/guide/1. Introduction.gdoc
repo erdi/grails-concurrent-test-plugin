@@ -1,0 +1,3 @@
+This plugin provides a new Grails test type which makes it easy to concurrently run JUnit tests for Grails applications. It also provides a mechanism to specify which test shouldn't be run concurrently but serially using annotations - it is useful if your test modifies a metaclass of a class and running it concurrently could lead to unexpected behaviour in other tests.
+
+The new test type determines which test classes are to be run concurrently and schedules them to run on a number of threads. There can be many test classes being run concurrently but the tests within one test class are always run sequentially. After all the tests classes that are to be run concurrently are finished all the other test classes are run sequentially.

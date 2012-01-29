@@ -1,7 +1,10 @@
+*.classpath
+*.settings
+*.project
 .idea
 *.iml
 *.ipr
 *.iws
-out
-target
-stacktrace.log
+*out
+*target
+*stacktrace.log

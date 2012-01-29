@@ -1,0 +1,7 @@
+h4. Running
+{code}
+grails test-app unit:concurrent
+{code}
+
+h4. Test execution process
+All test classes are run concurrently apart from the ones marked with [RunSequentially|api:grails.plugin.concurrenttest.RunSequentially] annotation which are run sequentially at the end of the test execution.
