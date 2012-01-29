@@ -109,7 +109,7 @@ function addJsClass() {
 To install the plugin use the <code>install-plugin</code> grails command:
 <div class="code"><pre>grails install&#45;plugin concurrent&#45;test</pre></div><p class="paragraph"/>You can also use the plugins block in <code>BuildConfig.groovy</code>:
 <div class="code"><pre>plugins &#123;
-    build(':concurrent&#45;test')
+    build(':concurrent&#45;test:0.1')
 &#125;</pre></div><p class="paragraph"/><blockquote class="warning">
 The <code>:concurrent</code> and <code>:concurrent-explicit</code> test types provided by the plugin pick up the same tests as the default <code>:unit</code> test type. Remember to always specify test type for the unit test phase after installing the plugin. Calling <code>grails test-app</code> or <code>grails test-app unit:</code> will cause your unit tests to be run three times: once for <code>:concurrent</code>, once for <code>:concurrent-explicit</code> and once for <code>:unit</code> test type - this is usually not what you want.
 </blockquote>
