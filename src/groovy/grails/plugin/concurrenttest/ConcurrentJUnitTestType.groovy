@@ -15,7 +15,7 @@ class ConcurrentJUnitTestType extends JUnit4GrailsTestType {
 
     @Override
     protected Object createSuite(classes) {
-        ConcurrentSuite suite = new ConcurrentSuite(classes as Class[], config, implicit)
+        ConcurrentSuite suite = createConcurrentSuite(classes)
         testCountForTestClasses = suite.testCountForTestClasses
         suite
     }
@@ -23,5 +23,9 @@ class ConcurrentJUnitTestType extends JUnit4GrailsTestType {
     @Override
     protected Object createListener(eventPublisher) {
         new ConcurrentSuiteRunListener(eventPublisher, createJUnitReportsFactory(), createSystemOutAndErrSwapper(), testCountForTestClasses)
+    }
+
+    protected ConcurrentSuite createConcurrentSuite(classes) {
+        new ConcurrentSuite(classes as Class[], config, implicit)
     }
 }

@@ -25,7 +25,7 @@ class ConcurrentSuite extends Suite {
             @Override
             public void evaluate() {
                 ConcurrentSuite.this.children.each { Runner runner ->
-                    customScheduler.schedule(new PossiblyConcurrentRunnable({
+                    customScheduler.schedule(createPossiblyConcurrentRunnable({
                         runChild(runner, notifier)
                     }, testClasses[describeChild(runner).className]))
                 }
@@ -39,6 +39,10 @@ class ConcurrentSuite extends Suite {
             Description classDescription = describeChild(child)
             map << new MapEntry(classDescription.className, classDescription.testCount())
         }
+    }
+
+    protected PossiblyConcurrentRunnable createPossiblyConcurrentRunnable(Closure runClosure, Class testClass) {
+        new PossiblyConcurrentRunnable(runClosure, testClass)
     }
 }
 
