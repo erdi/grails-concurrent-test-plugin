@@ -8,3 +8,5 @@
 *out
 *target
 *stacktrace.log
+plugin.xml
+grails-concurrent-test*.zip
