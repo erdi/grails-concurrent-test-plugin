@@ -23,5 +23,8 @@ grails.project.dependency.resolution = {
             excludes 'junit', 'xom', 'release'
             export = false
         }
+        build(':release:1.0.0.RC3') {
+            export = false
+        }
     }
 }

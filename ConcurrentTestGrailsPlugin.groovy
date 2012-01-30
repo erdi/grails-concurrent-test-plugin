@@ -1,5 +1,5 @@
 class ConcurrentTestGrailsPlugin {
-    def version = "0.1"
+    def version = "0.2"
 
     def grailsVersion = "1.3.2 > *"
     def dependsOn = [:]
@@ -9,5 +9,8 @@ class ConcurrentTestGrailsPlugin {
     def authorEmail = "marcin.erdmann@proxerd.pl"
     def title = "Cuncurrent Test plugin"
     def description = '''Allows to run Grails JUnit tests concurrently.'''
-    def documentation = "http://grails.org/plugin/concurrent-test-type"
+    def documentation = "http://erdi.github.com/grails-concurrent-test-plugin/"
+
+    def issueManagement = [ system: "Github", url: "http://github.com/erdi/grails-concurrent-test-plugin/issues" ]
+    def scm = [ url: "http://github.com/erdi/grails-concurrent-test-plugin" ]
 }
