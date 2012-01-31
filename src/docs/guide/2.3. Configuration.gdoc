@@ -1,4 +1,4 @@
-Currently there is only on configuration entry used by the plugin.
+Currently there is only one configuration entry used by the plugin.
 
 h2. grails.plugin.concurrentTest.threadCount
 
