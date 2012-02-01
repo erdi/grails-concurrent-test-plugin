@@ -26,6 +26,6 @@ class ConcurrentJUnitTestType extends JUnit4GrailsTestType {
     }
 
     protected ConcurrentSuite createConcurrentSuite(classes) {
-        new ConcurrentSuite(classes as Class[], config, implicit)
+        new ConcurrentSuite(createRunnerBuilder(), classes as Class[], config, implicit)
     }
 }

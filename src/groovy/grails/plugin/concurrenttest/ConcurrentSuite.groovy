@@ -6,14 +6,15 @@ import org.junit.runner.Runner
 import org.junit.runner.notification.RunNotifier
 import org.junit.runners.Suite
 import org.junit.runners.model.Statement
+import org.junit.runners.model.RunnerBuilder
 
 class ConcurrentSuite extends Suite {
 
     private ConcurrentRunnerScheduler customScheduler
     private Map<String, Class> testClasses
 
-    ConcurrentSuite(Class<?>[] classes, ConfigObject config, boolean implicit) {
-        super(new AllDefaultPossibilitiesBuilder(true), classes)
+    ConcurrentSuite(RunnerBuilder builder, Class<?>[] classes, ConfigObject config, boolean implicit) {
+        super(builder, classes)
         customScheduler = new ConcurrentRunnerScheduler(config, implicit)
         testClasses = classes.inject([:]) {Map nameToClass, Class c ->
             nameToClass << new MapEntry(c.name, c)
