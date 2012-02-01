@@ -40,6 +40,9 @@ class ConcurrentRunnerScheduler {
             }
             executorService.shutdownNow()
         }
-        tasksToBeRunSerially.each { it.run() }
+        tasksToBeRunSerially.removeAll {
+            it.run()
+            true
+        }
     }
 }

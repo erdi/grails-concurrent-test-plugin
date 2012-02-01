@@ -7,14 +7,14 @@ import org.codehaus.groovy.grails.test.report.junit.JUnitReports
 import org.junit.runner.Description
 import org.junit.runner.notification.Failure
 
-class PerTestCachinigRunListener {
+class PerTestCachingRunListener {
     List<Closure> methodCalls = []
     List<Closure> counterCalls = []
     PerTestRunListener listener
     int testCount
     private int testsRunCount
 
-    PerTestCachinigRunListener(String name, GrailsTestEventPublisher eventPublisher, JUnitReports reports,
+    PerTestCachingRunListener(String name, GrailsTestEventPublisher eventPublisher, JUnitReports reports,
                      SystemOutAndErrSwapper outAndErrSwapper) {
         listener = new PerTestRunListener(name, eventPublisher, reports, outAndErrSwapper)
     }
@@ -46,7 +46,7 @@ class PerTestCachinigRunListener {
     }
 
     void finish() {
-        methodCalls.each { it.call() }
+        methodCalls.each { it.call() }.clear()
         listener.finish()
     }
 

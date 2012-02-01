@@ -9,13 +9,13 @@ import org.junit.runner.notification.Failure
 import org.junit.runner.notification.RunListener
 
 class ConcurrentSuiteRunListener extends RunListener {
-    Map<String, PerTestCachinigRunListener> specListeners
+    Map<String, PerTestCachingRunListener> specListeners
     Map<String, Integer> testCountForTestClasses
 
     ConcurrentSuiteRunListener(GrailsTestEventPublisher eventPublisher, JUnitReportsFactory reportsFactory, SystemOutAndErrSwapper outAndErrSwapper, Map<String, Integer> testCountForTestClasses) {
         this.testCountForTestClasses = testCountForTestClasses
         specListeners = [:].withDefault { String name ->
-            def listener = new PerTestCachinigRunListener(name, eventPublisher, reportsFactory.createReports(name), outAndErrSwapper)
+            def listener = new PerTestCachingRunListener(name, eventPublisher, reportsFactory.createReports(name), outAndErrSwapper)
             listener.testCount = testCountForTestClasses[name]
             listener.start()
             listener
@@ -50,9 +50,9 @@ class ConcurrentSuiteRunListener extends RunListener {
     }
 
     private void checkIfLastTestAndFinish() {
-        Map.Entry<String, PerTestCachinigRunListener> finished = specListeners.each { String name, PerTestCachinigRunListener listener ->
+        Map.Entry<String, PerTestCachingRunListener> finished = specListeners.each { String name, PerTestCachingRunListener listener ->
             listener.updateCounters()
-        }.find { String name, PerTestCachinigRunListener listener -> listener.allTestsRun }
+        }.find { String name, PerTestCachingRunListener listener -> listener.allTestsRun }
         if (finished) {
             finished.value.finish()
             specListeners.remove(finished.key)

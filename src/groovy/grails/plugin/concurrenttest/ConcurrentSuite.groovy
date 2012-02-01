@@ -24,10 +24,11 @@ class ConcurrentSuite extends Suite {
         return new Statement() {
             @Override
             public void evaluate() {
-                ConcurrentSuite.this.children.each { Runner runner ->
+                ConcurrentSuite.this.children.removeAll { Runner runner ->
                     customScheduler.schedule(createPossiblyConcurrentRunnable({
                         runChild(runner, notifier)
                     }, testClasses[describeChild(runner).className]))
+                    true
                 }
                 customScheduler.finished()
             }
