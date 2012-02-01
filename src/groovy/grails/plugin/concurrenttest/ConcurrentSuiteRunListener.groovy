@@ -30,14 +30,12 @@ class ConcurrentSuiteRunListener extends RunListener {
         specListeners[description.className].testStarted(description)
     }
 
-    synchronized void testFailure(Failure failure) {
+    void testFailure(Failure failure) {
         specListeners[failure.description.className].testFailure(failure)
-        checkIfLastTestAndFinish()
     }
 
-    synchronized void testAssumptionFailure(Failure failure) {
+    void testAssumptionFailure(Failure failure) {
         specListeners[failure.description.className].testFailure(failure)
-        checkIfLastTestAndFinish()
     }
 
     synchronized void testFinished(Description description) {

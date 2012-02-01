@@ -31,11 +31,6 @@ class PerTestCachingRunListener {
         methodCalls << closure
     }
 
-    void testFailure(Failure failure) {
-        queueCounterIncrement()
-        queueListenerCall { listener.testFailure(failure) }
-    }
-
     void testFinished(Description description) {
         queueCounterIncrement()
         queueListenerCall { listener.testFinished(description) }
