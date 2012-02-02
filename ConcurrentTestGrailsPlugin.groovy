@@ -3,7 +3,7 @@ class ConcurrentTestGrailsPlugin {
 
     def grailsVersion = "1.3.2 > *"
     def dependsOn = [:]
-    def pluginExcludes = ["web-app"]
+    def pluginExcludes = ["web-app", "src/docs/**"]
 
     def author = "Marcin Erdmann"
     def authorEmail = "marcin.erdmann@proxerd.pl"
