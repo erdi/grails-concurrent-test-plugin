@@ -46,5 +46,11 @@ class ConcurrentSuite extends Suite {
     protected PossiblyConcurrentRunnable createPossiblyConcurrentRunnable(Closure runClosure, Class testClass) {
         new PossiblyConcurrentRunnable(runClosure, testClass)
     }
+
+	public Description getDescription() {
+		Description description = Description.createSuiteDescription(name, testClass.annotations)
+        children.each { description.addChild(describeChild(it)) }
+		return description
+	}
 }
 
