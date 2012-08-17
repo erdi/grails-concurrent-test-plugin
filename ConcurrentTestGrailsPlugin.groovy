@@ -7,8 +7,8 @@ class ConcurrentTestGrailsPlugin {
 
     def author = "Marcin Erdmann"
     def authorEmail = "marcin.erdmann@proxerd.pl"
-    def title = "Cuncurrent Test plugin"
-    def description = '''Allows to run Grails JUnit tests concurrently.'''
+    def title = "Concurrent Test Plugin"
+    def description = '''Allows users to run Grails JUnit tests concurrently.'''
     def documentation = "http://erdi.github.com/grails-concurrent-test-plugin/"
 
     def issueManagement = [ system: "Github", url: "http://github.com/erdi/grails-concurrent-test-plugin/issues" ]
